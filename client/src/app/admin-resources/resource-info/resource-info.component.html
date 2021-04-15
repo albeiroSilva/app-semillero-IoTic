@@ -1,0 +1,59 @@
+<div class="modal-body pt-0 bg-light">
+    <!-- Botón de Cerrar -->
+    <div class="row pl-3 pt-2 bg-white shadow-sm">
+        <div class="text-center pt-1">
+            <h4>{{resource.name}}</h4>
+        </div>
+        <div class="ml-auto px-3 mb-2">
+            <!-- Editar -->
+            <button *ngIf="!isEditable" type="button" class="btn shadow-sm btn-light rounded-pill" (click)="isEditable = !isEditable">
+                <fa-icon [icon]="faPen"></fa-icon>
+            </button>
+            <div *ngIf="isEditable">
+                <!-- Cancelar -->
+                <button type="button" class="btn btn-light mr-4 shadow-sm rounded-circle" (click)="cancelOnClick()">
+                    <fa-icon [icon]="faTimes"></fa-icon>
+                </button>
+                <!-- Actualizar -->
+                <button type="button" class="btn btn-success rounded-circle" (click)="updateOnClick()">
+                    <fa-icon [icon]="faCheck"></fa-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Imagen -->
+    <div class="shadow-sm border mt-3">
+        <img src="{{resource.imageLink}}" style="width: 100%; max-height: 20rem;" alt="Imágen del Evento">
+    </div>
+
+    <form [formGroup]="resourceForm">
+        <!-- Nombre -->
+        <input *ngIf="isEditable" formControlName="name" class="form-control shadow-sm bg-white border-0 my-3" placeholder="Nombre" id="name" type="text" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+        <input *ngIf="!isEditable" formControlName="name" class="form-control border-0 my-3" placeholder="Nombre" id="name" type="text" readonly>
+        
+        <!-- Descripción -->
+        <textarea *ngIf="isEditable" formControlName="description" class="form-control shadow-sm bg-white border-0 mb-3" placeholder="Descripción" rows="10" [ngClass]="{ 'is-invalid': submitted && f.description.errors }"></textarea>
+        <textarea *ngIf="!isEditable" formControlName="description" class="form-control border-0 mb-3" placeholder="Descripción" rows="10" readonly></textarea>
+
+        <!-- Cantidad -->
+        <input *ngIf="isEditable" formControlName="quantity" class="form-control shadow-sm bg-white border-0 my-3" min="1" placeholder="Unidades" id="name" type="number" [ngClass]="{ 'is-invalid': submitted && f.quantity.errors }">
+        <input *ngIf="!isEditable" formControlName="quantity" class="form-control border-0 my-3" min="1" placeholder="Unidades" id="name" type="number" readonly>
+
+        <!-- Categoría -->
+        <label>Categoría</label>
+        <select *ngIf="isEditable" formControlName="category" class="custom-select form-control border-0 shadow-sm" [ngClass]="{ 'is-invalid': submitted && f.category.errors }">
+            <option class="text-muted" value="null" [ngValue]="null">Seleccione la categoría</option>
+            <option *ngFor="let cat of categories" [ngValue]="cat">{{cat.name}}</option>
+        </select>
+        <p *ngIf="!isEditable && resource.category" class="text-muted">{{resource.category.name}}</p>
+        <p *ngIf="!isEditable && !resource.category" class="text-muted">No pertenece a ninguna categoría</p>
+    </form>
+
+    <!-- Disponible -->
+    <div class="custom-control custom-switch mr-4 pt-2 mb-3">
+        <input [ngModel]="isAvailable" *ngIf="isEditable" (change)="availableChange()" type="checkbox" class="rounded-pill custom-control-input" id="customSwitch2" name="available">
+        <input [ngModel]="isAvailable" disabled *ngIf="!isEditable" type="checkbox" class="rounded-pill custom-control-input" id="customSwitch2" name="available">
+        <label class="custom-control-label" for="customSwitch2">¿Se encuentra disponible?</label>
+    </div>
+</div>

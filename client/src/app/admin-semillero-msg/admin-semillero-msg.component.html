@@ -1,0 +1,58 @@
+<div class="container">
+  <h3 class="my-3">
+    Mensajes
+  </h3>
+  <p *ngIf="!weHaveMessages" class="text-center text-muted" >
+    No ha recibido ningún mensaje
+  </p>
+
+  <!-- Mensajes -->
+  <div style="overflow: auto; max-height: 90vh;">
+    <div class="container mb-3" *ngFor="let msg of messages">
+      <!-- Cabecera -->
+      <div class="card border-0 shadow-sm p-2" style="border-radius: 0px">
+        <div class="text-center">
+          <p class="py-2 mr-2 align-items-center">
+            Enviado por
+            <span class="text-muted">{{msg.sender}}</span>
+            el
+            <span class="text-muted">{{dateHelper.dateToStr(msg.sentAt)}}</span>
+          </p>
+        </div>
+        <div class="text-center">
+          <button aria-controls="collapseExample1" class="btn btn-outline-primary shadow-sm mb-2 rounded-circle" (click)="msg.visible = !msg.visible">
+            <fa-icon [icon]="faEye"></fa-icon>
+          </button>
+          <button class="btn btn-light ml-3 shadow-sm mb-2 rounded-circle" (click)="deleteOnClick(msg.id)">
+            <fa-icon [icon]="faTrashAlt"></fa-icon>
+          </button>
+        </div>
+  
+        <!-- Contenido del mensaje -->
+        <div id="collapseExample1" [ngbCollapse]="!msg.visible">
+          <hr class="mx-2">
+          <div class="container">
+            <p>
+              {{msg.message}}
+            </p>
+          </div>
+  
+          <!-- Información del remitente -->
+          <hr class="mx-2">
+          <div class="container" id="sender-info">
+            <p><b>Información del remitente</b></p>
+            <p>
+              Nombre: <span class="text-muted">{{msg.sender}}</span>
+            </p>
+            <p>
+              Correo electrónico: <span class="text-muted">{{msg.email}}</span>
+            </p>
+            <p>
+              Teléfono: <span class="text-muted">{{msg.phone_number}}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

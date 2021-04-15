@@ -1,0 +1,52 @@
+<div class="modal-body bg-light" id="course-form">
+    <div class="text-center container">
+        <h4>Formulario de Curso</h4>
+    </div>
+    <form>
+        <div class="custom-file mt-3 was-validated">
+            <input (change)="fileHelper.fileChange($event)" type="file" style="border-radius: 0px;" class="custom-file-input" id="validatedCustomFile" required>
+            <label style="border-radius: 0px;" class="custom-file-label text-muted" for="validatedCustomFile">Seleccione imagen de curso...</label>
+            <div class="invalid-feedback">Selecciona la imagen del curso</div>
+        </div>
+        <!-- Nombre -->
+        <input [(ngModel)]="course.name" name="name" class="form-control shadow-sm bg-white border-0 inner-shadow my-3" placeholder="Nombre del curso" id="name" type="text">
+        
+        <!-- Descripción -->
+        <textarea [(ngModel)]="course.description" name="desc" placeholder="Descripción" id="rounded" class="bg-white border-0 shadow-sm form-control mb-3" rows="10"></textarea>
+
+        <!-- Profesor -->
+        <input [(ngModel)]="course.teacher" name="teacher" class="form-control bg-white shadow-sm border-0 inner-shadow mb-3" placeholder="Instructor" id="teacher" type="text">
+
+        <!-- Fecha inicio y Fecha fin -->
+        <div class="row">
+            <div class="input-group col-6">
+                <input [(ngModel)]="course.starts_at" name="starts_at" class="form-control shadow-sm bg-white border-0" placeholder="Fecha Inicio" name="dp1" [(ngModel)]="model" ngbDatepicker #d1="ngbDatepicker" readonly>
+                <div class="input-group-append">
+                    <button class="btn btn-light border-0 shadow-sm rounded-circle ml-2" (click)="d1.toggle()" type="button">
+                        <fa-icon [icon]="faCalendarAlt"></fa-icon>
+                    </button>
+                </div>
+            </div>
+            <div class="input-group col-6 text-right">
+                <input [(ngModel)]="course.ends_at" name="ends_at" class="form-control shadow-sm bg-white border-0" placeholder="Fecha Fin" name="dp2" [(ngModel)]="model2" ngbDatepicker #d2="ngbDatepicker" readonly>
+                <div class="input-group-append">
+                    <button class="btn btn-light shadow-sm border-0 rounded-circle ml-2" (click)="d2.toggle()" type="button">
+                        <fa-icon [icon]="faCalendarAlt"></fa-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profesor -->
+        <input [(ngModel)]="course.moodleLink" name="moodleLink" class="form-control bg-white shadow-sm border-0 inner-shadow my-3" placeholder="Link de moodle" id="teacher" type="text">
+    </form>
+    <br>
+    <div class="row px-3">
+        <button type="button" class="btn btn-light mr-4 shadow-sm" (click)="cancelOnClick()">
+            Cancelar
+        </button>
+        <button type="button" class="ml-auto btn btn-success" (click)="addOnClick()">
+            Agregar
+        </button>
+    </div>
+</div>

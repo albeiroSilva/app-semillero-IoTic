@@ -1,0 +1,28 @@
+<div class="container col-12">
+    <!-- Título -->
+    <div class="text-center mt-5">
+        <h2>Noticias</h2>
+        <!-- En caso de que no hayan noticias -->
+        <p class="text-muted" *ngIf="!weHaveNews">En el momento no tenemos Noticias disponibles</p>
+    </div>
+    <div class="card row justify-content-center" *ngIf="weHaveNews">
+      <ngb-carousel class="col-12">
+        <ng-template ngbSlide *ngFor="let news_one of some_news" >
+          <div (click)="ShowNews(news_one.id)">  
+            <div class="col-12">
+              <img style="width: 100%;" class="col-12 mx-auto" src="{{news_one.imageLink}}" alt="Imagen de noticia">
+            </div>
+            <div class="carousel-caption">
+              <h3>{{news_one.title}}</h3>
+              <p>{{news_one.getDescPreview()}}</p>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-carousel>
+    </div>
+    <div class="text-center mt-5" *ngIf="weHaveNews">
+      <button type="button" class="btn btn-success" (click)="moreNewsOnClick()">Mas noticias</button>
+    </div>
+    
+</div>
+

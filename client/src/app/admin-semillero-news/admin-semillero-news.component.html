@@ -1,0 +1,32 @@
+<div class="container bg-light big-container">
+    <h3 class="mt-3">Noticias</h3>
+
+     <!-- Eventos -->
+    <div class="row mb-4" style="overflow: auto; max-height: 80vh;">
+        <div class="container col-md-4 mt-3 mb-2 mx-0" *ngFor="let n of news">
+            <div class="card border-0 shadow-sm pb-2">
+                <div class="card-img">
+                    <img class="card-img-top" src="{{n.imageLink}}" alt="Imágen del curso">
+                </div>
+                <div class="card-body text-justify pb-0">
+                    <h5 class="card-title">{{n.title}}</h5>
+                    <p class="text-muted">{{n.getDescPreview()}}...</p>
+                </div>
+                <div class="container text-center">
+                    <button class="btn btn-light mr-3 rounded-circle shadow-sm" (click)="showOnClick(n.id)">
+                        <fa-icon [icon]="faEye"></fa-icon>
+                    </button>
+                    <button class="btn btn-light shadow-sm rounded-circle" (click)="deleteOnClick(n.id)">
+                        <fa-icon [icon]="faTrashAlt"></fa-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container text-center">
+        <button class="btn btn-success float mb-2 shadow rounded-circle" (click)="addOnClick()">
+            <fa-icon [icon]="faPlus"></fa-icon>
+        </button>
+    </div>
+</div>

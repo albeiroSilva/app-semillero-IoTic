@@ -1,0 +1,15 @@
+.card .card-img img {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    height: 13rem;
+}
+
+.float {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    font-size: 25px;
+}

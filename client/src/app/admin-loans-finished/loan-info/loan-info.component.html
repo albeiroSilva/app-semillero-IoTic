@@ -1,0 +1,108 @@
+<style type="text/css">
+      .my-custom-scrollbar {
+        position: right;
+        max-height: 200px;
+        overflow: auto;
+        }
+        .table-wrapper-scroll-y {
+        display: block;
+        }
+
+        table .total:before {
+          content: counter(rows);
+        }
+
+        body{
+          counter-reset: rows;
+        }
+
+        table tbody tr {
+          counter-increment: rows;
+        }
+
+</style>
+
+<div class="modal-body bg-light pt-0">
+    <div class="text-center pt-2 mb-3 row bg-white border-0 shadow-sm">
+        <h4 class="mx-auto">Información del Prestamo</h4>
+    </div>
+    <form>
+        <div *ngIf="auxLoan.user.name" class="card shadow-sm border-0 rounded">
+          <div class="card-body">
+            <!-- Nombre del solicitante -->
+            <h6 class="text-center">Información del Solicitante</h6>
+            <div class="form-group">
+              <label>Nombre</label>
+              <input class="form-control border-0 rounded-pill" type="text" value="{{auxLoan.user.name}}" readonly>
+            </div>
+            <!-- Correo-->
+            <div class="form-group">
+              <label>Correo</label>
+              <input class="form-control border-0 rounded-pill" type="text" value="{{auxLoan.user.email}}" readonly>
+            </div>
+            <!-- Teléfono-->
+            <div class="form-group mb-0">
+              <label>Teléfono</label>
+              <input class="form-control border-0 rounded-pill" type="text" value="{{auxLoan.user.phone}}" readonly>
+            </div>
+          </div>
+        </div>
+
+        <div class="card my-3 border-0 shadow-sm rounded">
+          <div class="card-body">
+            <!-- Fecha de inicio -->
+            <div class="input-group col-12 px-0">
+              <label class="pt-2 col-6">Fecha de Solicitud</label>
+              <input type="text" class="ml-3 col-6 form-control rounded-pill border-0" value="{{dateHelper.dateToStr(auxLoan.dateStart)}}" readonly>
+            </div>
+            <!-- Fecha de aprobación -->
+            <div *ngIf="auxLoan.state > 0" class="input-group col-12 px-0 my-3">
+              <label class="pt-2 col-6">Fecha de Aprobación</label>
+              <input type="text" class="ml-3 col-6 form-control rounded-pill border-0" value="{{dateHelper.dateToStr(auxLoan.dateApproved)}}" readonly>
+            </div>
+            <!-- Fecha fin -->
+            <div *ngIf="auxLoan.state > 0" class="input-group col-12 px-0">
+              <label class="pt-2 col-6">Fecha de Finalización</label>
+              <input type="text" class="ml-3 col-6 form-control rounded-pill border-0" value="{{dateHelper.dateToStr(auxLoan.dateEnd)}}" readonly>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="auxLoan.state > 0" class="card rounded mb-3 border-0 shadow-sm">
+          <div class="card-body">
+            <!-- Link imagen del recurso-->
+            <div class="col-12 text-center">
+              <a *ngIf="auxLoan.resource_format_link != ''" class="col-12 px-0 text-center" href="{{auxLoan.image_resource_link}}">Imagen de Recursos entregados</a>
+            </div>
+            <hr *ngIf="auxLoan.image_format_link != ''" class="py-0">
+            <!-- Link formato del recibido-->
+            <div *ngIf="auxLoan.image_format_link != ''" class="col-12 text-center">
+              <a href="{{auxLoan.image_format_link}}">Imagen de Recibido</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recursos prestados-->
+        <div class="table-wrapper-scroll-y my-custom-scrollbar">
+            <table class="table mb-0">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">Recurso</th>
+                  <th scope="col">Cantidad</th>
+                </tr>
+              </thead>
+              <tbody> 
+                <tr scope="row" *ngFor="let resource of resources">
+                  <td >{{resource.resource.name}}</td>
+                  <td>{{resource.quantity}}</td>
+                </tr>
+              </tbody>
+            </table>
+        </div><br>
+        <div class="text-center container">
+            <button type="button" class="btn btn-primary rounded-pill mr-4 shadow-sm" (click)="cancelOnClick()">
+                Aceptar
+            </button>
+        </div>
+    </form>
+</div>

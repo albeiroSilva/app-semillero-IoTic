@@ -1,0 +1,72 @@
+<app-nav-bar></app-nav-bar>
+<div class="container col-12 bg-light">
+    <div class="row align-items-center h-100">
+        <div class="mx-auto py-5 col-md-5">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <!-- Logo -->
+                    <div class="d-flex justify-content-center logo" (click)="logoOnClick()">
+                        <img src="assets/icons/logo.png" alt="Logo">
+                    </div>
+                    <!-- Formulario -->
+                    <form class="pt-4" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                        <!-- Nombre -->
+                        <div class="input-group mb-3">
+                            <input formControlName="name" type="text" class="form-control bg-light border-0 shadow-sm" placeholder="Nombre Completo" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                        </div>
+                        <!-- Correo -->
+                        <div class="input-group mb-3">
+                            <input formControlName="email" type="text" class="form-control bg-light border-0 shadow-sm" placeholder="Correo Institucional" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                        </div>
+                        <!-- Número Telefónico -->
+                        <div class="input-group mb-3">
+                            <input formControlName="phone" type="text" class="form-control bg-light border-0 shadow-sm" placeholder="Teléfono" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }">
+                        </div>
+                        <!-- Programa -->
+                        <div class="input-group mb-3">
+                            <input formControlName="career" type="text" class="form-control bg-light border-0 shadow-sm" placeholder="Programa" [ngClass]="{ 'is-invalid': submitted && f.career.errors }">
+                        </div>
+                        <!-- Fecha de Nacimiento -->
+                        <div class="input-group mb-3">
+                            <input [formControl]="f.birth_date" type="date" class="form-control bg-light border-0 shadow-sm" placeholder="Fecha de Nacimiento" ngbDatepicker #d="ngbDatepicker" [ngClass]="{ 'is-invalid': submitted && f.birth_date.errors }" readonly>
+                            <button class="btn btn-primary rounded-circle ml-2 shadow-sm" (click)="d.toggle()" type="button">
+                                <fa-icon [icon]="faCalendarAlt"></fa-icon>
+                            </button>
+                        </div>
+                        <!-- ¿Soy Estudiante? -->
+                        <div class="input-group mb-3">
+                            <div class="custom-control custom-switch">
+                                <input fromControlName="student" (change)="studentOnChange()" type="checkbox" class="custom-control-input bg-light border-0 shadow-sm" id="student" [ngClass]="{ 'is-invalid': submitted && f.student.errors }">
+                                <label class="custom-control-label" for="student">Soy Estudiante</label>
+                            </div>
+                        </div>
+                        <!-- Semestre -->
+                        <div class="form-group mb-3" *ngIf="f.student.value">
+                            <label>Semestre</label>
+                            <select id="semester" class="custom-select bg-light border-0 shadow-sm">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                        </div>
+                        <!--Solicitar Registro-->
+                        <div class="text-center">
+                            <button type="submit" class="col-12 btn btn-success">Solicitar Registro</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-center bg-white">
+                    <p class="text-muted mb-0">¿Ya te encuentras registrado?</p>
+                    <a href="/login">Inicia Sesión</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

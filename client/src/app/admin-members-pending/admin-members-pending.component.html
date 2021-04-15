@@ -1,0 +1,32 @@
+<div class="container col-12">
+    <!-- Título -->
+    <div class="text-center mt-5">
+        <h2>Solicitudes pendientes</h2>
+        <!-- En caso de que no hayan solicitudes pendientes -->
+        <p class="text-muted" *ngIf="!weHavePendings">En el momento no hay solicitudes pendientes</p>
+    </div>
+    <div class="row">
+        <!-- Cartas de las Solicitudes -->
+        <div class="col-md-6 mt-3 mb-3 mx-auto" *ngFor="let pending of pendings">
+            <div class="card shadow-sm border-0">
+                <div class="card-body text-justify pb-1">
+                    <p>Nombre: <span class="text-muted">{{pending.name}}</span></p>
+                    <p>Email: <span class="text-muted">{{pending.email}}</span></p>
+                    <p>Teléfono: <span class="text-muted">{{pending.phone}}</span></p>
+                    <p>Fecha de nacimiento: <span class="text-muted">{{pending.birth_date | date:'yyyy-MM-dd'}}</span></p>
+                    <p>Programa: <span class="text-muted">{{pending.career}}</span></p>
+                    <p *ngIf="pending.student">Semestre: <span class="text-muted">{{pending.semester}}</span></p>
+
+                    <hr>
+                    <div class="row">
+                        <button class="btn btn-danger mx-auto mb-3 shadow-sm rounded-circle" (click)="deletePendingOnClick(pending.id)"> 
+                            <fa-icon [icon]="faTimes"></fa-icon>
+                        </button>
+                        <button class="btn btn-success mx-auto mb-3 shadow-sm rounded-circle" (click)="acceptPendingOnClick(pending.id)"> 
+                            <fa-icon [icon]="faCheck"></fa-icon>
+                        </button>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>

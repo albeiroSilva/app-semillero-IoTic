@@ -1,0 +1,22 @@
+<div class="container col-12">
+    <!-- Título -->
+    <div class="text-center mt-5">
+        <h2>Integrantes del Semillero</h2>
+        <!-- En caso de que no hayan integrantes -->
+        <p class="text-muted" *ngIf="!weHaveMembers">En el momento no tenemos integrantes</p>
+    </div>
+    <div class="row">
+        <!-- Cartas de los integrantes -->
+        <div class="col-md-6 mt-3 mb-3 mx-auto" *ngFor="let member of members">
+            <div class="card shadow-sm p-0 border-0">
+                <div class="card-body text-justify pb-0">
+                    <p>Nombre: <span class="text-muted">{{member.name}}</span></p>
+                    <p>Email: <span class="text-muted">{{member.email}}</span></p>
+                    <p>Teléfono: <span class="text-muted">{{member.phone}}</span></p>
+                    <p>Fecha de nacimiento: <span class="text-muted">{{member.birth_date | date:'yyyy-MM-dd'}}</span></p>
+                    <p>Programa: <span class="text-muted">{{member.career}}</span></p>
+                    <p *ngIf="member.student">Semestre: <span class="text-muted">{{member.semester}}</span></p>
+                </div>
+        </div>
+    </div>
+</div>

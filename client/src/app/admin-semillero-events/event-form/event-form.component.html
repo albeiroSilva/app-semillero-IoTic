@@ -1,0 +1,39 @@
+<div class="modal-body bg-light">
+    <div class="text-center container">
+        <h4>Formulario de Evento</h4>
+    </div>
+    <form>
+        <div class="custom-file mt-3 was-validated">
+            <input (change)="fileHelper.fileChange($event)" type="file" style="border-radius: 0px;" class="custom-file-input" id="validatedCustomFile" required>
+            <label style="border-radius: 0px;" class="custom-file-label text-muted" for="validatedCustomFile">Seleccione imagen de evento...</label>
+            <div class="invalid-feedback">Selecciona la imagen del evento</div>
+        </div>
+        <!-- Nombre -->
+        <input [(ngModel)]="event.name" name="name" class="form-control bg-white shadow-sm border-0 my-3" placeholder="Nombre" id="name" type="text" required>
+        
+        <!-- Descripción -->
+        <textarea [(ngModel)]="event.description" name="desc" placeholder="Descripción" class="shadow-sm bg-white border-0 form-control mb-3" rows="10"></textarea>
+
+        <!-- Score -->
+        <input [(ngModel)]="event.score" name="score" min="0" class="form-control shadow-sm bg-white border-0 my-3" placeholder="Score" id="name" type="number">
+
+        <!-- Fecha -->
+        <div class="input-group">
+            <input [(ngModel)]="event.date" name="date" class="form-control shadow-sm bg-white border-0 inner-shadow" placeholder="Fecha" name="dp1" [(ngModel)]="model" ngbDatepicker #d1="ngbDatepicker" readonly>
+            <div class="input-group-append">
+                <button class="btn btn-light shadow-sm rounded-circle ml-2" (click)="d1.toggle()" type="button">
+                    <fa-icon [icon]="faCalendarAlt"></fa-icon>
+                </button>
+            </div>
+        </div>
+    </form>
+    <br>
+    <div class="row px-3">
+        <button type="button" class="btn btn-light mr-4 shadow-sm" (click)="cancelOnClick()">
+            Cancelar
+        </button>
+        <button type="submit" class="ml-auto btn btn-outline-success" (click)="addOnClick()">
+            Agregar
+        </button>
+    </div>
+</div>

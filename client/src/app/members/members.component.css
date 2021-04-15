@@ -1,0 +1,19 @@
+.card .card-img img {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    max-height: 20rem;
+}
+
+.card {
+    border-radius: 20px;
+}
+
+button {
+    margin: auto;
+    margin-bottom: 8px;
+    border-color: transparent;
+}
+
+button:hover {
+    border-color: transparent;
+}

@@ -1,0 +1,25 @@
+<!-- Barra de navegación del Administrador -->
+<app-admin-navbar></app-admin-navbar>
+
+<div class="row bg-light" style="height: 100vh;">
+  <div class="container px-4">
+    <!-- Semillero -->
+    <app-admin-semillero-msg *ngIf="selectedOption == OPTIONS.MSG"></app-admin-semillero-msg>
+    <app-admin-semillero-courses *ngIf="selectedOption == OPTIONS.COURSES"></app-admin-semillero-courses>
+    <app-admin-semillero-events *ngIf="selectedOption == OPTIONS.EVENTS"></app-admin-semillero-events>
+    <app-admin-semillero-news *ngIf="selectedOption == OPTIONS.NEWS"></app-admin-semillero-news>
+    <app-members *ngIf="selectedOption == OPTIONS.MEMBERS"></app-members>
+
+    <!-- Recursos -->
+    <app-admin-resources *ngIf="selectedOption == OPTIONS.RESOURCES"></app-admin-resources>
+    <app-admin-resources-categories *ngIf="selectedOption == OPTIONS.CATEGORIES"></app-admin-resources-categories>
+
+    <!-- Integrantes -->
+    <app-admin-members-pending *ngIf="selectedOption == OPTIONS.PENDING"></app-admin-members-pending>
+    
+    <!-- Prestamos -->
+    <app-admin-loans-requested *ngIf="selectedOption == OPTIONS.REQUESTED"></app-admin-loans-requested>
+    <app-admin-loans-in-progress *ngIf="selectedOption == OPTIONS.IN_PROGRESS"></app-admin-loans-in-progress>
+    <app-admin-loans-finished *ngIf="selectedOption == OPTIONS.FINISHED"></app-admin-loans-finished>
+  </div>
+</div>

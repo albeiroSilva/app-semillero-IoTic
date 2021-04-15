@@ -1,0 +1,36 @@
+<div class="modal-body bg-light" id="course-form">
+    <div class="text-center container">
+        <h4>Formulario de Categoría</h4>
+    </div>
+    <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+        <!-- Nombre -->
+        <input formControlName="name" class="form-control shadow-sm bg-white border-0 my-3" placeholder="Nombre" id="name" type="text" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+
+        <!-- Disponible -->
+        <div class="custom-control custom-switch mr-4 pt-2 mb-3">
+            <input formControlName="available" type="checkbox" class="rounded-pill custom-control-input" id="customSwitch2" name="state">
+            <label class="custom-control-label" for="customSwitch2">¿Se encuentra disponible?</label>
+        </div>
+
+        <!-- ¿Pertenece a otra categoría? -->
+        <div class="custom-control custom-switch mr-4 pt-2 mb-2">
+            <input formControlName="question" type="checkbox" class="rounded-pill custom-control-input" id="customSwitch1" name="question">
+            <label class="custom-control-label" for="customSwitch1">¿Pertenece a otra categoría?</label>
+        </div>
+        
+        <!-- Categoría Padre -->
+        <select *ngIf="f.question.value" formControlName="parent" class="custom-select form-control border-0 shadow-sm" [ngClass]="{ 'is-invalid': submitted && f.parent.errors }">
+            <option >Selecciona una categoría...</option>
+            <option *ngFor="let cat of categories" [ngValue]="cat">{{cat.name}}</option>
+        </select>
+
+        <div class="row px-3 mt-4">
+            <button class="btn btn-light mr-4 shadow-sm" (click)="close()">
+                Cancelar
+            </button>
+            <button type="submit" class="ml-auto btn btn-success">
+                Agregar
+            </button>
+        </div>
+    </form>
+</div>

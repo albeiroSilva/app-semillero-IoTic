@@ -1,0 +1,26 @@
+<div class="modal-body pt-0 bg-light">
+    <!-- Botón de Cerrar -->
+    <div class="row pl-3 pt-2 bg-white shadow-sm">
+        <div class="text-center pt-1">
+            <h4>{{resource.name}}</h4>
+        </div>
+    </div>
+
+    <!-- Imagen -->
+    <div class="shadow-sm border mt-3">
+        <img src="{{resource.imageLink}}" style="width: 100%; max-height: 20rem;" alt="Imágen del Evento">
+    </div>
+
+    <!-- Nombre -->
+    <input [(ngModel)]="resource.name" name="name" class="form-control border-0 my-3" placeholder="Nombre" id="name" type="text" readonly>
+    
+    <!-- Descripción -->
+    <textarea [(ngModel)]="resource.description" name="desc" class="form-control border-0 mb-3" placeholder="Descripción" rows="10" readonly></textarea>
+
+    <!-- Cantidad -->
+    <input *ngIf="!isEditable" [(ngModel)]="resource.quantity" name="quantity" class="form-control border-0 my-3" min="1" placeholder="Unidades" id="name" type="number" readonly>
+
+    <div class="text-center col-12">
+        <button (click)="close()" class="btn btn-primary rounded-pill">Aceptar</button>
+    </div>
+</div>

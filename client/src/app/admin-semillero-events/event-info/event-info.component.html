@@ -1,0 +1,59 @@
+<div class="modal-body bg-light pt-0" id="course-form">
+    <div class="row pl-3 bg-white pt-3 shadow-sm">
+        <div class="text-center">
+            <h4>{{event.name}}</h4>
+        </div>
+        <div class="ml-auto px-3 mb-2">
+            <!-- Editar -->
+            <button *ngIf="!isEditable" type="button" class="btn shadow-sm btn-light rounded-pill" (click)="isEditable = !isEditable">
+                <fa-icon [icon]="faPen"></fa-icon>
+            </button>
+            <div *ngIf="isEditable">
+                <!-- Cancelar -->
+                <button type="button" class="btn btn-light mr-4 shadow-sm rounded-circle" (click)="cancelOnClick()">
+                    <fa-icon [icon]="faTimes"></fa-icon>
+                </button>
+                <!-- Actualizar -->
+                <button type="button" class="btn btn-success rounded-circle" (click)="updateOnClick()">
+                    <fa-icon [icon]="faCheck"></fa-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+    <form>
+        <!-- Nombre -->
+        <div class="form-group mt-3">
+            <label>Nombre</label>
+            <input *ngIf="isEditable" [(ngModel)]="event.name" name="name" class="form-control bg-white border-0 shadow-sm mb-3" placeholder="Nombre del curso" id="name" type="text">
+            <input *ngIf="!isEditable" [(ngModel)]="event.name" name="name" class="form-control border-0 mb-3" placeholder="Nombre del curso" id="name" type="text" readonly>
+        </div>
+        
+        <!-- Descripción -->
+        <div class="form-group">
+            <label>Descripción</label>
+            <textarea *ngIf="isEditable" [(ngModel)]="event.description" name="desc" placeholder="Descripción" id="rounded" class="form-control bg-white border-0 shadow-sm mb-3" rows="10"></textarea>
+            <textarea *ngIf="!isEditable" [(ngModel)]="event.description" name="desc" placeholder="Descripción" id="rounded" class="border-0 form-control mb-3" rows="10" readonly></textarea>
+        </div>
+
+        <!-- Score -->
+        <div class="form-group">
+            <label>Score</label>
+            <input *ngIf="isEditable" [(ngModel)]="event.score" name="score" class="form-control bg-white border-0 shadow-sm mb-3" placeholder="Instructor" id="teacher" type="text">
+            <input *ngIf="!isEditable" [(ngModel)]="event.score" name="score" class="form-control border-0 mb-3" placeholder="Instructor" id="teacher" type="text" readonly>
+        </div>
+
+        <!-- Fecha -->
+        <label>Fecha</label>
+        <div class="input-group mb-3">
+            <input [(ngModel)]="event.date" name="date" class="form-control border-0" placeholder="Fecha Inicio" name="dp1" [(ngModel)]="model" ngbDatepicker #d1="ngbDatepicker" readonly>
+            <div class="input-group-append">
+                <button *ngIf="isEditable" class="btn btn-light border rounded-circle ml-2" (click)="d1.toggle()" type="button">
+                    <fa-icon [icon]="faCalendarAlt"></fa-icon>
+                </button>
+            </div>
+        </div>
+    </form>
+    <div class="container col-12 text-center">
+        <button (click)="close()" *ngIf="!isEditable" class="btn btn-outline-primary text-center shadow-sm">Aceptar</button>
+    </div>
+</div>

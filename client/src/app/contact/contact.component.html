@@ -1,0 +1,38 @@
+<div class="container my-3">
+    <div class="row mx-auto">
+        <div class="card shadow-sm mx-auto col-md-5 px-1 border-0" style="border-radius: 0px;">
+            <div class="card-body">
+                <!-- Título -->
+                <div class="text-center card-title mb-3">
+                    <h2>Contacto</h2>
+                </div>
+                <!-- Formulario -->
+                <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+                    <!-- Nombre -->
+                    <div class="input-group mb-3">
+                        <input formControlName="sender" type="text" class="border-0 form-control bg-light shadow-sm" placeholder="Nombre Completo" [ngClass]="{ 'is-invalid': submitted && f.sender.errors }">
+                    </div>
+                    <!-- Correo -->
+                    <div class="input-group mb-3">
+                        <input formControlName="email" type="text" class="border-0 bg-light form-control shadow-sm" placeholder="Correo" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                    </div>
+                    <!-- Teléfono -->
+                    <div class="input-group mb-3">
+                        <input formControlName="phone_number" type="tel" class="border-0 bg-light form-control shadow-sm" placeholder="Teléfono" [ngClass]="{ 'is-invalid': submitted && f.phone_number.errors }">
+                    </div>
+                    <!-- Mensaje -->
+                    <div class="input-group mb-3">
+                        <textarea placeholder="Mensaje" class="form-control border-0 bg-light shadow-sm" formControlName="message" cols="30" rows="5" [ngClass]="{ 'is-invalid': submitted && f.message.errors }"></textarea>
+                    </div>
+                    <!--Solicitar Registro-->
+                    <div class="text-center">
+                        <button type="submit" class="col-12 btn btn-primary shadow-sm">
+                            Enviar
+                            <fa-icon class="ml-2" [icon]="faPaperPlane"></fa-icon>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+.container {
+    height: 100vh;
+    width: 100vw;
+}
+
+.card, input, button {
+    border-radius: 15px;
+}
+
+img {
+    max-height: 10rem;
+    width: 90%;
+}
+
+.logo:hover {
+    cursor: pointer;
+}

@@ -1,0 +1,7 @@
+#news-form {
+    max-width: 300;
+}
+
+input, button, textarea {
+    border-radius: 20px;
+}

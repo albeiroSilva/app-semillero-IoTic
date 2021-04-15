@@ -1,0 +1,77 @@
+<nav class="navbar navbar-expand-md navbar bg-white py-4 mb-2 col-12 shadow-sm">
+    <!-- Logo -->
+    <a class="navbar-brand text-dark ml-2" href="admin">
+        <b>Administrador</b>
+    </a>
+    <!-- Menú Hamburguesa -->
+    <button class="navbar-toggler d-lg-none" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarsExampleDefault" aria-label="Toggle navigation">
+      <fa-icon [icon]="faBars"></fa-icon>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault" [ngbCollapse]="isCollapsed">
+      <ul class="navbar-nav mx-auto">
+        <!-- Semillero -->
+        <li class="nav-item mx-auto">
+          <form class="form-inline mt-2 mt-md-0 pr-3">
+            <div ngbDropdown class="mx-auto">
+              <button class="btn" id="dropdownBasic1" ngbDropdownToggle>Semillero</button>
+              <div class="border-0 shadow-sm py-0" style="border-radius: 0px;" ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button class="py-2 btn-light" ngbDropdownItem (click)="eventsOnClick()">Eventos</button>
+                <button class="py-2 btn-light" ngbDropdownItem (click)="coursesOnClick()">Cursos</button>
+                <button class="py-2 btn-light" ngbDropdownItem (click)="newsOnClick()">Noticias</button>
+                <button class="py-2 btn-light" ngbDropdownItem (click)="messagesOnClick()">Mensajes</button>
+                <button class="py-2 btn-light" ngbDropdownItem (click)="membersOnClick()">Integrantes</button>
+              </div>
+            </div>
+          </form>
+        </li>
+        <!-- Recursos -->
+        <li class="nav-item mx-auto">
+          <form class="form-inline mt-2 mt-md-0 pr-3">
+            <div ngbDropdown class="mx-auto">
+              <button class="btn" id="dropdownBasic2" ngbDropdownToggle>Recursos</button>
+              <div class="border-0 shadow-sm py-0" style="border-radius: 0px;" ngbDropdownMenu aria-labelledby="dropdownBasic2">
+                <button class="py-2 btn-light" ngbDropdownItem (click)="resourcesOnClick()">Recursos</button>
+                <button class="py-2 btn-light" ngbDropdownItem (click)="categoriesOnClick()">Categorías</button>
+              </div>
+            </div>
+          </form>
+        </li>
+        <!-- Prestamos -->
+        <li class="nav-item mx-auto">
+          <form class="form-inline mt-2 mt-md-0 pr-3">
+            <div ngbDropdown class="mx-auto">
+              <button class="btn" id="dropdownBasic4" ngbDropdownToggle>Prestamos</button>
+              <div class="border-0 shadow-sm py-0" style="border-radius: 0px;" ngbDropdownMenu aria-labelledby="dropdownBasic2">
+                <button class="py-2 btn-light" ngbDropdownItem (click)="loans_requestedOnClick()">Solicitados</button>
+                <button class="py-2 btn-light" ngbDropdownItem (click)="loans_in_progressOnClick()">En Curso</button>
+                <button class="py-2 btn-light" ngbDropdownItem (click)="loans_finishedOnClick()">Finalizados</button>
+              </div>
+            </div>
+          </form>
+        </li>
+        <!--Solicitudes Pendientes -->
+        <li class="nav-item mx-auto">
+          <form class="form-inline mt-2 mt-md-0 pr-3">
+            <div ngbDropdown class="mx-auto">
+              <button class="btn" id="dropdownBasic3" ngbDropdownToggle>Solicitudes</button>
+              <div class="border-0 shadow-sm py-0" style="border-radius: 0px;" ngbDropdownMenu aria-labelledby="dropdownBasic3">                
+                <button class="py-2 btn-light" ngbDropdownItem (click)="membersPendingOnClick()">Pendientes</button>
+              </div>
+            </div>
+          </form>
+        </li>
+      </ul>
+      <!-- Usuario -->
+      <form class="form-inline mt-2 mt-md-0 pr-2">
+        <div class="mx-auto">
+          <button class="btn mr-3" (click)="backOnClick()">
+            <fa-icon [icon]="faArrowLeft" class="mr-2"></fa-icon>Volver a la App
+          </button>
+          <button class="btn shadow-sm btn-outline-danger rounded-circle" (click)="logoutOnClick()">
+            <fa-icon [icon]="faSignOutAlt"></fa-icon>
+          </button>
+        </div>
+      </form>
+    </div>
+  </nav>

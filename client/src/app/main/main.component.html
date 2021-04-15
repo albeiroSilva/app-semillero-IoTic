@@ -1,0 +1,18 @@
+<!-- Barra de Navagación -->
+<app-nav-bar></app-nav-bar>
+
+<div style="max-height: 84vh; overflow: auto;">
+    <!-- Inicio -->
+    <app-home *ngIf="homeActiveRoute"></app-home>
+
+    <!-- Contacto -->
+    <app-contact *ngIf="contactActiveRoute"></app-contact>
+
+    <!-- Recursos -->
+    <app-resources *ngIf="resourcesActiveRoute"></app-resources>
+
+    <!-- Loans -->
+    <app-loans *ngIf="loansActiveRoute"></app-loans>
+</div>
+
+

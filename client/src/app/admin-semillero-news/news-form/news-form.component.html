@@ -1,0 +1,27 @@
+<div class="modal-body bg-light" id="newsForm">
+    <div class="text-center container">
+        <h4>Formulario de Noticia</h4>
+    </div>
+    <form [formGroup]="newsForm" (ngSubmit)="onSubmit()">
+        <!-- Imagen -->
+        <div class="custom-file mt-3 was-validated">
+            <input (change)="fileHelper.fileChange($event)" type="file" style="border-radius: 0px;" class="custom-file-input" id="validatedCustomFile" required>
+            <label style="border-radius: 0px;" class="custom-file-label text-muted" for="validatedCustomFile">Seleccione imagen de la noticia...</label>
+            <div class="invalid-feedback">Selecciona la imagen de la noticia</div>
+        </div>
+        <!-- Titulo -->
+        <input formControlName="title" name="title" class="form-control bg-white border-0 my-3 shadow-sm" placeholder="Titulo de la noticia" type="text" [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
+        
+        <!-- Descripción -->
+        <textarea formControlName="description" name="desc" placeholder="Descripción" id="rounded" class="bg-white border-0 shadow-sm form-control mb-3" rows="7" [ngClass]="{ 'is-invalid': submitted && f.description.errors }"></textarea>
+
+        <div class="row px-3">
+            <button type="button" class="btn btn-light mr-4 shadow-sm" (click)="cancelOnClick()">
+                Cancelar
+            </button>
+            <button type="submit" class="ml-auto btn btn-success">
+                Agregar
+            </button>
+        </div>
+    </form>
+</div>

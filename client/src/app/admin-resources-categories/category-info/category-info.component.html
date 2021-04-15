@@ -1,0 +1,55 @@
+<div class="modal-body bg-light pt-0" id="course-form">
+    <div class="row pl-3 pt-3 shadow-sm bg-white">
+        <div class="text-center">
+            <h4>{{category.name}}</h4>
+        </div>
+        <div class="ml-auto px-3 pt-0 mb-2">
+            <!-- Editar -->
+            <button *ngIf="!isEditable" type="button" class="btn shadow-sm btn-light rounded-pill" (click)="isEditable = !isEditable">
+                <fa-icon [icon]="faPen"></fa-icon>
+            </button>
+            <div *ngIf="isEditable">
+                <!-- Cancelar -->
+                <button type="button" class="btn btn-light mr-4 shadow-sm rounded-circle" (click)="cancelOnClick()">
+                    <fa-icon [icon]="faTimes"></fa-icon>
+                </button>
+                <!-- Actualizar -->
+                <button type="button" class="btn btn-success rounded-circle" (click)="updateOnClick()">
+                    <fa-icon [icon]="faCheck"></fa-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+    <form [formGroup]="categoryForm" class="mt-3">
+        <!-- Nombre -->
+        <div class="form-group">
+            <label>Nombre</label>
+            <input *ngIf="isEditable" formControlName="name" class="form-control bg-light border-0 shadow-sm bg-white mb-3" id="name" type="text">
+            <input *ngIf="!isEditable" formControlName="name" class="form-control border-0 mb-3" id="name" type="text" readonly>
+        </div>
+    </form>
+    <!-- ¿Pertenece a otra categoría? -->
+    <div class="custom-control custom-switch mr-4 pt-2 mb-3">
+        <input *ngIf="isEditable" [(ngModel)]="question" type="checkbox" class="rounded-pill custom-control-input" id="customSwitch1">
+        <input *ngIf="!isEditable" [(ngModel)]="question" type="checkbox" class="rounded-pill custom-control-input" id="customSwitch1" disabled>
+        <label class="custom-control-label" for="customSwitch1">¿Pertenece a otra categoría?</label>
+    </div>
+    
+    <!-- Categoría Padre -->
+    <select *ngIf="question && isEditable" [(ngModel)]="parent" class="custom-select form-control mb-3 border-0 shadow-sm" [ngClass]="{ 'is-invalid': submitted && f.parent.errors }">
+        <option *ngFor="let cat of categories" class="text-muted" [ngValue]="cat">{{cat.name}}</option>
+    </select>
+    <label *ngIf="question && !isEditable" class="text-muted">{{parent.name}}</label>
+
+    <!-- Disponible -->
+    <div class="custom-control custom-switch mr-4 pt-2 mb-3">
+        <input *ngIf="isEditable" [(ngModel)]="isAvailable" type="checkbox" class="rounded-pill custom-control-input" id="customSwitch2">
+        <input *ngIf="!isEditable" [(ngModel)]="isAvailable" type="checkbox" class="rounded-pill custom-control-input" id="customSwitch2" disabled>
+        <label class="custom-control-label" for="customSwitch2">¿Se encuentra disponible?</label>
+    </div>
+
+    
+    <div class="container col-12 text-center">
+        <button (click)="close()" *ngIf="!isEditable" class="btn btn-primary text-center shadow-sm">Aceptar</button>
+    </div>
+</div>
